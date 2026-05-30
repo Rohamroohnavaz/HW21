@@ -24,6 +24,7 @@ namespace HW21.DomainLayer.Models
         public City City { get; set; }
         public Province Province { get; set; }
         public TimeManaging Time { get; set; }
+        public int TimeId { get; set; }
         [Required]
         public Status Status { get; set; } = Status.Active;
     }

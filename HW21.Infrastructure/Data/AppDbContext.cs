@@ -16,7 +16,6 @@ namespace HW21.Infrastructure.Data
         public DbSet<Car> Cars { get; set; }
         public DbSet<TechnicalExaminationCenter> TechnicalExaminationCenters { get; set; }
         public DbSet<TakingTurn> TakingTurns { get; set; }
-        public DbSet<ProvidingService> ProvidingServices { get; set; }
         public DbSet<City> Cities { get; set; }
         public DbSet<Province> Provinces { get; set; }
 

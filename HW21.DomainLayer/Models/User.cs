@@ -11,6 +11,18 @@ namespace HW21.DomainLayer.Models
 {
     public class User : BaseEntity
     {
+        public User()
+        {
+            
+        }
+
+        public User(string username, string password, long phoneNumber)
+        {
+            Username = username;
+            Password = password;
+            PhoneNumber = phoneNumber;
+        }
+
         [Required]
         [MaxLength(100)]
         public string Username { get; set; }

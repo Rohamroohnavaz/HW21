@@ -30,13 +30,13 @@ namespace HW21.Repository.GenericRepositories
             return await query.ToListAsync();
         }
 
-        public async Task<T>? GetByIdAsync(int id)
+        public async Task<T> GetByIdAsync(int id)
         {
-            var query = _dbContext.Set<T>()
+            var query = await _dbContext.Set<T>()
                 .AsQueryable()
                 .FirstOrDefaultAsync(q => q.Id == id);
 
-            return await query;
+            return query;
         }
 
         public async Task UpdateAsync(T entity)

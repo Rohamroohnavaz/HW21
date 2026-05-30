@@ -27,6 +27,11 @@ namespace HW21.Infrastructure.ModelBuilders
                 .WithMany()
                 .HasForeignKey(t => t.CarId)
                 .OnDelete(DeleteBehavior.Restrict);
+
+            builder.HasOne(t => t.Time)
+                .WithMany(tm => tm.Turns)
+                .HasForeignKey(t => t.TimeId)
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }
