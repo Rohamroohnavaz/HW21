@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\HW21.Infrastructure\HW21.Infrastructure.csproj" />
+    <ProjectReference Include="..\HW21.Repository\HW21.Repository.csproj" />
+  </ItemGroup>
+
 </Project>

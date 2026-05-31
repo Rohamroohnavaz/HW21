@@ -7,11 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HW21.Repository.MainRepositories
+namespace HW21.Repository.MainRepositories.Repos
 {
-    public class UserRepository : GenericRepository<User>
+    public class CarRepository : GenericRepository<Car>
     {
-        public UserRepository(AppDbContext dbContext) : base(dbContext)
+        public CarRepository(AppDbContext dbContext) : base(dbContext)
         {
         }
     }

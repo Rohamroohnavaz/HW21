@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HW21.Service
+namespace HW21.Service.InterfaceServices
 {
-    public class UserService
+    public interface IAdminService
     {
-        
     }
 }

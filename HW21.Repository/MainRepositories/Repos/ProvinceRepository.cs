@@ -7,11 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HW21.Repository.MainRepositories
+namespace HW21.Repository.MainRepositories.Repos
 {
-    public class TakingTurnRepository : GenericRepository<TakingTurn>
+    public class ProvinceRepository : GenericRepository<Province>
     {
-        public TakingTurnRepository(AppDbContext dbContext) : base(dbContext)
+        public ProvinceRepository(AppDbContext dbContext) : base(dbContext)
         {
         }
     }
