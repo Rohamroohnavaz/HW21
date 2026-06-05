@@ -10,7 +10,6 @@ namespace HW21.DomainLayer.Models
 {
     public class TimeManaging : BaseEntity
     {
-        public int Capacity { get; set; }
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
         public TechnicalExaminationCenter Center { get; set; }

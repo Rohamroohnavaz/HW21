@@ -11,9 +11,8 @@ namespace HW21.DomainLayer.Models
 {
     public class TakingTurn : BaseEntity
     {
-        public User User { get; set; }
         [Required]
-        public int UserId { get; set; }
+        public int Capacity { get; set; }
         public Car Car { get; set; }
         [Required]
         public int CarId { get; set; }
@@ -21,8 +20,6 @@ namespace HW21.DomainLayer.Models
         [Required]
         public int CenterId { get; set; }
         public string ResultText { get; set; }
-        public City City { get; set; }
-        public Province Province { get; set; }
         public TimeManaging Time { get; set; }
         public int TimeId { get; set; }
         [Required]

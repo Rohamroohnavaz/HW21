@@ -13,9 +13,6 @@ namespace HW21.Infrastructure.ModelBuilders
     {
         protected override void ApplyEntityConfiguration(EntityTypeBuilder<TechnicalExaminationCenter> builder)
         {
-            builder.Property(t => t.TurnCount)
-                .IsRequired();
-
             builder.Property(t => t.VisitTime)
                 .HasColumnType("datetime")
                 .HasDefaultValueSql("GETDATE()")

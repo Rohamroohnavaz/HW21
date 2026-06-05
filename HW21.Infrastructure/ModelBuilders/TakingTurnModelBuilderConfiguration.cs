@@ -13,11 +13,6 @@ namespace HW21.Infrastructure.ModelBuilders
     {
         protected override void ApplyEntityConfiguration(EntityTypeBuilder<TakingTurn> builder)
         {
-            builder.HasOne(t => t.User)
-                .WithMany()
-                .HasForeignKey(t => t.UserId)
-                .OnDelete(DeleteBehavior.Restrict);
-
             builder.HasOne(t => t.Center)
                 .WithMany()
                 .HasForeignKey(t => t.CenterId)

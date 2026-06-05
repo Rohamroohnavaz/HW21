@@ -16,7 +16,7 @@ namespace HW21.Infrastructure.ModelBuilders
         {
             builder.HasKey(e => e.Id);
             builder.HasIndex(e => e.CreatedAt);
-            builder.HasQueryFilter(e => e.IsDeleted == false);
+            builder.HasQueryFilter(e => e.IsDeleted);
 
             ApplyEntityConfiguration(builder);
         }
