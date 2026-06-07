@@ -18,6 +18,7 @@ namespace HW21.Infrastructure.Data
         public DbSet<TakingTurn> TakingTurns { get; set; }
         public DbSet<City> Cities { get; set; }
         public DbSet<Province> Provinces { get; set; }
+        public DbSet<TimeManaging> Times { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

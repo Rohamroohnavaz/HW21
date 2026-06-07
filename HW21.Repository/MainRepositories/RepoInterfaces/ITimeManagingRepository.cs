@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace HW21.Repository.MainRepositories.RepoInterfaces
 {
-    public interface ICenterRepository : IGenericRepository<TechnicalExaminationCenter>
+    public interface ITimeManagingRepository : IGenericRepository<TimeManaging>
     {
-        Task<List<TechnicalExaminationCenter>> GetActiveCenters(int cityId);
+        Task<List<TimeManaging>> GetAllTimesByCenterId(int centerId);
     }
 }

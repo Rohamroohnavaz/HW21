@@ -10,5 +10,6 @@ namespace HW21.Repository.MainRepositories.RepoInterfaces
 {
     public interface ICityRepository : IGenericRepository<City>
     {
+        Task<List<City>> GetCityByProvinceId(int provinceId);
     }
 }

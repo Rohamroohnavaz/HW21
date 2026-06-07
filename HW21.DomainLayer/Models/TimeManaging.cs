@@ -16,4 +16,5 @@ namespace HW21.DomainLayer.Models
         public int CenterId { get; set; }
         public ICollection<TakingTurn> Turns { get; set; } = new List<TakingTurn>();
     }
+    
 }

@@ -11,9 +11,9 @@ namespace HW21.Repository.GenericRepositories
 {
     public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
     {
-        private readonly AppDbContext _dbContext;
+        protected readonly AppDbContext _dbContext;
 
-        public GenericRepository(AppDbContext dbContext)
+        protected GenericRepository(AppDbContext dbContext)
         {
             _dbContext = dbContext;
         }
@@ -30,7 +30,7 @@ namespace HW21.Repository.GenericRepositories
             return await query.ToListAsync();
         }
 
-        public async Task<T> GetByIdAsync(int id)
+        public async Task<T?> GetByIdAsync(int id)
         {
             var query = await _dbContext.Set<T>()
                 .AsQueryable()

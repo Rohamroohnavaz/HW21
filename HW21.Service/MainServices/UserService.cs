@@ -28,7 +28,7 @@ namespace HW21.Service.MainServices
         {
             await _context.Set<User>().FirstOrDefaultAsync(u => u.Role == Role.NormalUser);
 
-            var register = await _context.Set<User>()
+            var register = await _context.Users
                 .AsNoTracking()
                 .FirstOrDefaultAsync(u => u.PhoneNumber == phoneNumber);
 
@@ -43,7 +43,7 @@ namespace HW21.Service.MainServices
             Console.Write("Please Enter Your Chassis Number : ");
             var input = Console.ReadLine();
 
-            var newCar = await _context.Set<Car>()
+            var newCar = await _context.Cars
                 .Where(n => input == n.ChassisNumber)
                 .FirstAsync();
 
@@ -52,7 +52,7 @@ namespace HW21.Service.MainServices
 
         public async Task<List<TakingTurn>> GetActiveTurns()
         {
-            var turns = await _context.Set<TakingTurn>()
+            var turns = await _context.TakingTurns
                 .AsNoTracking()
                 .Where(t => t.Status == Status.Active)
                 .ToListAsync();

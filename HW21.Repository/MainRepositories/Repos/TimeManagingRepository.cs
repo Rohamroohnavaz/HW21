@@ -11,15 +11,15 @@ using System.Threading.Tasks;
 
 namespace HW21.Repository.MainRepositories.Repos
 {
-    public class TakingTurnRepository : GenericRepository<TakingTurn> ,ITakingTurnRepository
+    public class TimeManagingRepository : GenericRepository<TimeManaging> ,ITimeManagingRepository
     {
-        public TakingTurnRepository(AppDbContext dbContext) : base(dbContext)
+        protected TimeManagingRepository(AppDbContext dbContext) : base(dbContext)
         {
         }
 
-        public async Task<List<TakingTurn>> GetTurnsByCenterId(int centerId)
+        public async Task<List<TimeManaging>> GetAllTimesByCenterId(int centerId)
         {
-            return await _dbContext.TakingTurns
+            return await _dbContext.Times
                 .AsNoTracking()
                 .Where(t => t.CenterId == centerId)
                 .ToListAsync();
