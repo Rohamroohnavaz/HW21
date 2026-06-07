@@ -24,5 +24,7 @@ namespace HW21.DomainLayer.Models
         public int TimeId { get; set; }
         [Required]
         public Status Status { get; set; } = Status.Active;
+        [Required]
+        public ReserveStatus ReserveStatus { get; set; } = ReserveStatus.None;
     }
 }

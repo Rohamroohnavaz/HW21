@@ -13,5 +13,7 @@ namespace HW21.Repository.MainRepositories.RepoInterfaces
         Task<List<TakingTurn>> GetTurnsByCenterId(int centerId);
 
         Task<List<TakingTurn>> GetTurnsByCenterIdAndDate(int centerId, DateTime date);
+
+        Task<bool> IsReserveAsync(int timeManagingId);
     }
 }

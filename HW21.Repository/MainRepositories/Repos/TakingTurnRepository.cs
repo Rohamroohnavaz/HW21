@@ -1,4 +1,5 @@
-﻿using HW21.DomainLayer.Models;
+﻿using HW21.DomainLayer.Enums;
+using HW21.DomainLayer.Models;
 using HW21.Infrastructure.Data;
 using HW21.Repository.GenericRepositories;
 using HW21.Repository.MainRepositories.RepoInterfaces;
@@ -32,6 +33,14 @@ namespace HW21.Repository.MainRepositories.Repos
                 .Where(t => t.CenterId == centerId)
                 .Where(t => t.CreatedAt == date)
                 .ToListAsync();
+        }
+
+        public async Task<bool> IsReserveAsync(int timeManagingId)
+        {
+            return await _dbContext.TakingTurns
+                .AsNoTracking()
+                .AnyAsync(t => t.TimeId == timeManagingId
+                && t.ReserveStatus == ReserveStatus.IsReserve);
         }
     }
 }
