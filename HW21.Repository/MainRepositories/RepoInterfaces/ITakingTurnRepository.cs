@@ -11,5 +11,7 @@ namespace HW21.Repository.MainRepositories.RepoInterfaces
     public interface ITakingTurnRepository : IGenericRepository<TakingTurn>
     {
         Task<List<TakingTurn>> GetTurnsByCenterId(int centerId);
+
+        Task<List<TakingTurn>> GetTurnsByCenterIdAndDate(int centerId, DateTime date);
     }
 }

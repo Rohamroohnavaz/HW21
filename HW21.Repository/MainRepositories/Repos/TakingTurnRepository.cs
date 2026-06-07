@@ -24,5 +24,14 @@ namespace HW21.Repository.MainRepositories.Repos
                 .Where(t => t.CenterId == centerId)
                 .ToListAsync();
         }
+
+        public async Task<List<TakingTurn>> GetTurnsByCenterIdAndDate(int centerId, DateTime date)
+        {
+            return await _dbContext.TakingTurns
+                .AsNoTracking()
+                .Where(t => t.CenterId == centerId)
+                .Where(t => t.CreatedAt == date)
+                .ToListAsync();
+        }
     }
 }

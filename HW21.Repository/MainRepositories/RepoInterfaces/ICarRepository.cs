@@ -10,5 +10,8 @@ namespace HW21.Repository.MainRepositories.RepoInterfaces
 {
     public interface ICarRepository : IGenericRepository<Car>
     {
+        Task<List<Car>> GetCarByUserId(int userId);
+
+        Task<bool> ExistByChassissNumber(string chassissNumber);
     }
 }
