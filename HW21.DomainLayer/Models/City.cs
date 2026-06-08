@@ -19,5 +19,11 @@ namespace HW21.DomainLayer.Models
         [Required]
         public ICollection<TechnicalExaminationCenter> Centers { get; set; }
             = new List<TechnicalExaminationCenter>();
+
+        public override void Validation()
+        {
+            if (string.IsNullOrWhiteSpace(Name))
+                throw new Exception("Name is required !");
+        }
     }
 }

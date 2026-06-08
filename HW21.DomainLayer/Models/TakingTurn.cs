@@ -26,5 +26,13 @@ namespace HW21.DomainLayer.Models
         public Status Status { get; set; } = Status.Active;
         [Required]
         public ReserveStatus ReserveStatus { get; set; } = ReserveStatus.None;
+
+        public override void Validation()
+        {
+            if (Capacity < 0)
+                throw new Exception("Capacity can not be negative !!");
+            if (string.IsNullOrEmpty(ResultText))
+                throw new Exception("!Null Value!");
+        }
     }
 }

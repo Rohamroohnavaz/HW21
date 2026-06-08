@@ -28,5 +28,13 @@ namespace HW21.DomainLayer.Models
         public int ProvinceId { get; set; }
         [Required]
         public Status Status { get; set; } = Status.Active;
+
+        public override void Validation()
+        {
+            if (string.IsNullOrWhiteSpace(Name))
+                throw new Exception("Name is required !!");
+            if(string.IsNullOrWhiteSpace(Address))
+                throw new Exception("Address is required !!");
+        }
     }
 }

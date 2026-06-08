@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HW21.DomainLayer.Abstractions
 {
-    public class BaseEntity
+    public abstract class BaseEntity
     {
         public int Id { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
@@ -16,5 +16,7 @@ namespace HW21.DomainLayer.Abstractions
         {
             IsDeleted = true;
         }
+
+        public abstract void Validation();
     }
 }

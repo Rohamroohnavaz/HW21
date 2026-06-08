@@ -20,5 +20,11 @@ namespace HW21.DomainLayer.Models
         [Required]
         public int UserId { get; set; }
         public List<TakingTurn> Turns { get; set; }
+
+        public override void Validation()
+        {
+            if (string.IsNullOrWhiteSpace(ChassisNumber))
+                throw new Exception("ChassisNumber is required !");
+        }
     }
 }

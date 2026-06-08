@@ -14,5 +14,11 @@ namespace HW21.DomainLayer.Models
         [MaxLength(50)]
         public string Name { get; set; }
         public ICollection<City> Cities { get; set; } = new List<City>();
+
+        public override void Validation()
+        {
+            if (string.IsNullOrWhiteSpace(Name))
+                throw new Exception("Name is required !");
+        }
     }
 }

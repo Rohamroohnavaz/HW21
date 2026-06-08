@@ -35,5 +35,14 @@ namespace HW21.DomainLayer.Models
         [Required]
         public Role Role { get; set; } = Role.NormalUser;
         public List<Car> Cars { get; set; }
+
+        public override void Validation()
+        {
+            if (string.IsNullOrEmpty(Username) || string.IsNullOrEmpty(Password))
+                throw new Exception("!Null Value!");
+
+            if (PhoneNumber < 10)
+                throw new Exception("Invalid PhoneNumber!!");
+        }
     }
 }

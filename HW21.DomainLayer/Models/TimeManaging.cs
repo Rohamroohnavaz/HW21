@@ -15,6 +15,11 @@ namespace HW21.DomainLayer.Models
         public TechnicalExaminationCenter Center { get; set; }
         public int CenterId { get; set; }
         public ICollection<TakingTurn> Turns { get; set; } = new List<TakingTurn>();
+
+        public override void Validation()
+        {
+            throw new NotImplementedException();
+        }
     }
     
 }
