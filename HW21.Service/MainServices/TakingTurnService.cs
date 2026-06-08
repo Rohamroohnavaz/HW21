@@ -58,5 +58,18 @@ namespace HW21.Service.MainServices
 
             await _turnRepository.AddAsync(newTurn);
         }
+
+        public async Task<List<TurnDto>> GetAllTurnsDto()
+        {
+            var turns = await _turnRepository.GetAllAsync();
+
+            return turns.Select(x => new TurnDto
+            {
+                Id = x.Id,
+                Capacity = x.Capacity,
+                CenterId = x.CenterId,
+                Status = Status.Active
+            }).ToList();
+        }
     }
 }
