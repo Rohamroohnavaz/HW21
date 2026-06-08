@@ -10,6 +10,17 @@ namespace HW21.DomainLayer.Models
 {
     public class City : BaseEntity
     {
+        public City()
+        {
+            
+        }
+
+        public City(string name ,int provinceId)
+        {
+            Name = name;
+            ProvinceId = provinceId;
+            Validation();
+        }
         [Required]
         [MaxLength(50)]
         public string Name { get; set; }

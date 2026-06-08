@@ -10,6 +10,16 @@ namespace HW21.DomainLayer.Models
 {
     public class Province : BaseEntity
     {
+        public Province()
+        {
+            
+        }
+        public Province(string name)
+        {
+            Name = name;
+            Validation();
+        }
+
         [Required]
         [MaxLength(50)]
         public string Name { get; set; }

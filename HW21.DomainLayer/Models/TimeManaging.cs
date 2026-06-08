@@ -10,6 +10,18 @@ namespace HW21.DomainLayer.Models
 {
     public class TimeManaging : BaseEntity
     {
+        public TimeManaging()
+        {
+            
+        }
+
+        public TimeManaging(DateTime startTime ,DateTime endTime)
+        {
+            StartTime = startTime;
+            EndTime = endTime;
+            Validation();
+        }
+
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
         public TechnicalExaminationCenter Center { get; set; }

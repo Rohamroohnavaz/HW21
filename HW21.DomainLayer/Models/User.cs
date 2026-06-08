@@ -13,7 +13,7 @@ namespace HW21.DomainLayer.Models
     {
         public User()
         {
-            
+
         }
 
         public User(string username, string password, long phoneNumber)
@@ -21,6 +21,7 @@ namespace HW21.DomainLayer.Models
             Username = username;
             Password = password;
             PhoneNumber = phoneNumber;
+            Validation();
         }
 
         [Required]
@@ -35,6 +36,15 @@ namespace HW21.DomainLayer.Models
         [Required]
         public Role Role { get; set; } = Role.NormalUser;
         public List<Car> Cars { get; set; }
+
+        public void UpdateUserInfo(string username, string password, long phoneNumber, Role role)
+        {
+            Username = username;
+            Password = password;
+            PhoneNumber = phoneNumber;
+            Role = role;
+            Validation();
+        }
 
         public override void Validation()
         {

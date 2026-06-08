@@ -11,6 +11,19 @@ namespace HW21.DomainLayer.Models
 {
     public class TechnicalExaminationCenter : BaseEntity
     {
+        public TechnicalExaminationCenter()
+        {
+            
+        }
+
+        public TechnicalExaminationCenter(string name ,string address ,int turnCount ,DateTime visitTime)
+        {
+            Name = name;
+            Address = address;
+            TurnCount = turnCount;
+            VisitTime = visitTime;
+            Validation();
+        }
         [Required]
         [MaxLength(50)]
         public string Name { get; set; }
@@ -28,6 +41,14 @@ namespace HW21.DomainLayer.Models
         public int ProvinceId { get; set; }
         [Required]
         public Status Status { get; set; } = Status.Active;
+
+        public void UpdateCenterInfo(string name ,string address ,int turnCount)
+        {
+            Name = name;
+            Address = address;
+            TurnCount = turnCount;
+            Validation();
+        }
 
         public override void Validation()
         {

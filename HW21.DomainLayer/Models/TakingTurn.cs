@@ -11,6 +11,17 @@ namespace HW21.DomainLayer.Models
 {
     public class TakingTurn : BaseEntity
     {
+        public TakingTurn()
+        {
+            
+        }
+
+        public TakingTurn(int capacity ,string resultText)
+        {
+            Capacity = capacity;
+            ResultText = resultText;
+            Validation();
+        }
         [Required]
         public int Capacity { get; set; }
         public Car Car { get; set; }
@@ -26,6 +37,13 @@ namespace HW21.DomainLayer.Models
         public Status Status { get; set; } = Status.Active;
         [Required]
         public ReserveStatus ReserveStatus { get; set; } = ReserveStatus.None;
+
+        public void UpdateTurnInfo(int capacity ,string resultText)
+        {
+            Capacity = capacity;
+            ResultText = resultText;
+            Validation();
+        }
 
         public override void Validation()
         {

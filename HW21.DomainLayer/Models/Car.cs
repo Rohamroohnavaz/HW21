@@ -11,6 +11,18 @@ namespace HW21.DomainLayer.Models
 {
     public class Car : BaseEntity
     {
+        public Car()
+        {
+            
+        }
+
+        public Car(string chassisNumber ,int userId)
+        {
+            ChassisNumber = chassisNumber;
+            UserId = userId;
+            Validation();
+        }
+
         [Required]
         [MaxLength(20)]
         public string ChassisNumber { get; set; }
@@ -20,6 +32,13 @@ namespace HW21.DomainLayer.Models
         [Required]
         public int UserId { get; set; }
         public List<TakingTurn> Turns { get; set; }
+
+        public void UpdateCarInfo(string chassisNumber ,Status status)
+        {
+            ChassisNumber = chassisNumber;
+            Status = status;
+            Validation();
+        }
 
         public override void Validation()
         {
