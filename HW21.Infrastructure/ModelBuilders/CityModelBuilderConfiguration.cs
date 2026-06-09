@@ -1,4 +1,5 @@
 ﻿using HW21.DomainLayer.Models;
+using HW21.Infrastructure.Data.Seed_Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
@@ -17,6 +18,8 @@ namespace HW21.Infrastructure.ModelBuilders
                 .WithMany(c => c.Cities)
                 .HasForeignKey(c => c.ProvinceId)
                 .OnDelete(DeleteBehavior.Restrict);
+
+            //builder.HasData
         }
     }
 }

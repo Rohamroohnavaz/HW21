@@ -26,6 +26,8 @@ namespace HW21.DomainLayer.Models
         [Required]
         [MaxLength(20)]
         public string ChassisNumber { get; set; }
+        [Required]
+        public string CarName { get; set; }
         public User Owner { get; set; }
         [Required]
         public Status Status { get; set; }

@@ -16,8 +16,9 @@ namespace HW21.DomainLayer.Models
 
         }
 
-        public User(string username, string password, long phoneNumber)
+        public User(int id,string username, string password, long phoneNumber)
         {
+            Id = id;
             Username = username;
             Password = password;
             PhoneNumber = phoneNumber;
