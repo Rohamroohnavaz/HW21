@@ -41,6 +41,9 @@ namespace HW21.DomainLayer.Models
         public int ProvinceId { get; set; }
         [Required]
         public Status Status { get; set; } = Status.Active;
+        public DateTime StartTime { get; set; }
+        public DateTime EndTime { get; set; }
+
 
         public void UpdateCenterInfo(string name ,string address ,int turnCount)
         {

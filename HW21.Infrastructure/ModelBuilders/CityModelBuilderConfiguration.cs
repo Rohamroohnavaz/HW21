@@ -19,7 +19,7 @@ namespace HW21.Infrastructure.ModelBuilders
                 .HasForeignKey(c => c.ProvinceId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            //builder.HasData
+            builder.HasData(SeedData.CreateCity);
         }
     }
 }

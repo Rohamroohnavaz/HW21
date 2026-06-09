@@ -31,7 +31,7 @@ namespace HW21.Infrastructure.Data.Seed_Data
             {
                 Id = 4 ,Username = "Ali_V88" ,Password = "456123" ,PhoneNumber = 09196678932
             }
-           
+
         };
 
         public static List<Car> CreateCar => new()
@@ -81,22 +81,22 @@ namespace HW21.Infrastructure.Data.Seed_Data
         {
             new TechnicalExaminationCenter
             {
-                Id = 1 ,Name = "Center 1" ,Address = "Tehran" ,Status = Status.Active ,TurnCount = 3
+                Id = 1 ,Name = "Center 1" ,Address = "Tehran_" ,Status = Status.Active ,TurnCount = 3
             },
 
             new TechnicalExaminationCenter
             {
-                Id = 2 ,Name = "Center 2" ,Address = "Karaj" ,Status = Status.Active ,TurnCount = 1
+                Id = 2 ,Name = "Center 2" ,Address = "Karaj_" ,Status = Status.Active ,TurnCount = 1
             },
 
             new TechnicalExaminationCenter
             {
-                Id = 3 ,Name = "Center 3" ,Address = "Shiraz" ,Status = Status.Active ,TurnCount = 2
+                Id = 3 ,Name = "Center 3" ,Address = "Shiraz_" ,Status = Status.Active ,TurnCount = 2
             },
 
             new TechnicalExaminationCenter
             {
-                Id = 4 ,Name = "Center 4" ,Address = "Ardabil" ,Status = Status.Active ,TurnCount = 2
+                Id = 4 ,Name = "Center 4" ,Address = "Ardabil_" ,Status = Status.Active ,TurnCount = 2
             },
         };
 
@@ -104,12 +104,25 @@ namespace HW21.Infrastructure.Data.Seed_Data
         {
             new City
             {
-                Id = 1 ,Name = "LA"
+                Id = 1 ,Name = "Tehran"
             },
 
             new City
             {
-                Id = 2 ,Name = "Melborn"
+                Id = 2 ,Name = "Karaj"
+            }
+        };
+
+        public static List<Province> CreateProvince => new()
+        {
+            new Province
+            {
+                Id = 1 ,Name = "Tehran"
+            },
+
+            new Province
+            {
+                Id = 1, Name = "Alborz"
             }
         };
     }
