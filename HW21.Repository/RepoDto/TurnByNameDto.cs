@@ -8,8 +8,8 @@ namespace HW21.Repository.RepoDto
 {
     public class TurnByNameDto
     {
-        public string provinceName { get; set; }
-        public string cityName { get; set; }
-        public string centerName { get; set; }
+        public string ProvinceName { get; set; }
+        public string CityName { get; set; }
+        public string CenterName { get; set; }
     }
 }

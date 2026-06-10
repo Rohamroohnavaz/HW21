@@ -57,9 +57,9 @@ namespace HW21.Repository.MainRepositories.Repos
                 .Where(t => t.Center.Name == centerName)
                 .Select(x => new TurnByNameDto
                 {
-                    provinceName = x.ProvinceName,
-                    cityName = x.CityName,
-                    centerName = x.Center.Name
+                    ProvinceName = x.ProvinceName,
+                    CityName = x.CityName,
+                    CenterName = x.Center.Name
                 }).FirstAsync();
         }
 

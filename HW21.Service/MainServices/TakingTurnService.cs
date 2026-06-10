@@ -62,7 +62,7 @@ namespace HW21.Service.MainServices
 
         public async Task CreateTurnForUserByName(TurnByNameDto dto, string provinceName, string cityName)
         {
-            var turn = await _turnRepository.GetTurnByCenterName(dto.centerName);
+            var turn = await _turnRepository.GetTurnByCenterName(dto.CenterName);
             if (turn.ProvinceName != provinceName && turn.CityName != cityName)
             {
                 Console.WriteLine("Invalid Names !!");

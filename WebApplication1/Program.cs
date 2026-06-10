@@ -1,4 +1,8 @@
 using HW21.Infrastructure.Data;
+using HW21.Repository.MainRepositories.RepoInterfaces;
+using HW21.Repository.MainRepositories.Repos;
+using HW21.Service.InterfaceServices;
+using HW21.Service.MainServices;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,6 +19,13 @@ builder.Services.AddCors(options =>
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddDbContext<AppDbContext>(options =>
+            options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddScoped<ITakingTurnService, TakingTurnService>();
+builder.Services.AddScoped<ITakingTurnRepository ,TakingTurnRepository>();
+builder.Services.AddScoped<ICarRepository, CarRepository>();
+builder.Services.AddScoped<ICenterRepository, CenterRepository>();
 // Add services to the container.
 
 builder.Services.AddControllers();
