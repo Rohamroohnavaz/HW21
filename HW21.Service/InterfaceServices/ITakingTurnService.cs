@@ -10,7 +10,9 @@ namespace HW21.Service.InterfaceServices
 {
     public interface ITakingTurnService
     {
-        Task CreateTurnForUser(CreateTurnDto dto, int userId ,int timeManagingId);
+        Task CreateTurnForUserById(CreateTurnDto dto, int userId ,int timeManagingId);
+
+        Task CreateTurnForUserByName(TurnByNameDto dto, string provinceName, string cityName);
 
         Task<List<TurnDto>> GetAllTurnsDto();
 

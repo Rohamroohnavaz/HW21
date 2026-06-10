@@ -18,15 +18,15 @@ namespace HW21.Service.MainServices
         private readonly ICarRepository _carRepository;
         private readonly ICenterRepository _centerRepository;
 
-        public TakingTurnService(ITakingTurnRepository turnRepository 
-            ,ICarRepository carRepository ,ICenterRepository centerRepository)
+        public TakingTurnService(ITakingTurnRepository turnRepository
+            , ICarRepository carRepository, ICenterRepository centerRepository)
         {
             _turnRepository = turnRepository;
             _carRepository = carRepository;
             _centerRepository = centerRepository;
         }
 
-        public async Task CreateTurnForUser(CreateTurnDto dto, int userId ,int timeManagingId)
+        public async Task CreateTurnForUserById(CreateTurnDto dto, int userId, int timeManagingId)
         {
             var car = await _carRepository.GetByIdAsync(dto.CarId);
             if (car is null || car.UserId == userId)
@@ -34,7 +34,7 @@ namespace HW21.Service.MainServices
                 Console.WriteLine("Car Is Invalid !!");
                 return;
             }
-                
+
 
             var center = _centerRepository.GetByIdAsync(dto.CenterId);
             if (center is null || (int)center.Status == (int)Status.InActive)
@@ -42,7 +42,7 @@ namespace HW21.Service.MainServices
                 Console.WriteLine("Center Is Invalid !!");
                 return;
             }
-             
+
             var turns = await _turnRepository.IsReserveAsync(timeManagingId);
             if (turns)
             {
@@ -58,6 +58,17 @@ namespace HW21.Service.MainServices
             };
 
             await _turnRepository.AddAsync(newTurn);
+        }
+
+        public async Task CreateTurnForUserByName(TurnByNameDto dto, string provinceName, string cityName)
+        {
+            var turn = await _turnRepository.GetTurnByCenterName(dto.centerName);
+            if (turn.ProvinceName != provinceName && turn.CityName != cityName)
+            {
+                Console.WriteLine("Invalid Names !!");
+                return;
+            }
+
         }
 
         public async Task<List<TurnDto>> GetAllTurnsDto()

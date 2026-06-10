@@ -16,10 +16,12 @@ namespace HW21.DomainLayer.Models
             
         }
 
-        public TakingTurn(int capacity ,string resultText)
+        public TakingTurn(int capacity ,string resultText ,string provinceName ,string cityName)
         {
             Capacity = capacity;
             ResultText = resultText;
+            ProvinceName = provinceName;
+            CityName = cityName;
             Validation();
         }
         [Required]
@@ -31,6 +33,8 @@ namespace HW21.DomainLayer.Models
         [Required]
         public int CenterId { get; set; }
         public string ResultText { get; set; }
+        public string ProvinceName { get; set; }
+        public string CityName { get; set; }
         public TimeManaging Time { get; set; }
         public int TimeId { get; set; }
         [Required]

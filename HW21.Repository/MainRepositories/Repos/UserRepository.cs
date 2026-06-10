@@ -1,8 +1,10 @@
 ﻿using HW21.DomainLayer.Enums;
 using HW21.DomainLayer.Models;
 using HW21.Infrastructure.Data;
+using HW21.Infrastructure.Data.Seed_Data;
 using HW21.Repository.GenericRepositories;
 using HW21.Repository.MainRepositories.RepoInterfaces;
+using HW21.Repository.RepoDto;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -59,5 +61,15 @@ namespace HW21.Repository.MainRepositories.Repos
 
             return activeTurns;
         }
+
+        //public Task<TakingTurnDto> TakeTurnFromCenterForCar(string provinceName ,string cityName ,string centerName)
+        //{
+        //    var centers = SeedData.CreateCenter;
+
+        //    if (!centers.Any())
+        //        return null;
+
+            
+        //}
     }
 }

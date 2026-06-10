@@ -12,12 +12,10 @@ namespace HW21.Service.MainServices
     public class AdminService : IAdminService
     {
         private readonly IUserRepository _userRepository;
-        private readonly AppDbContext _context;
 
-        public AdminService(IUserRepository userRepository ,AppDbContext context)
+        public AdminService(IUserRepository userRepository)
         {
             _userRepository = userRepository;
-            _context = context;
         }
     }
 }

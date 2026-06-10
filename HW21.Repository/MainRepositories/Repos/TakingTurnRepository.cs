@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace HW21.Repository.MainRepositories.Repos
 {
-    public class TakingTurnRepository : GenericRepository<TakingTurn> ,ITakingTurnRepository
+    public class TakingTurnRepository : GenericRepository<TakingTurn>, ITakingTurnRepository
     {
         public TakingTurnRepository(AppDbContext dbContext) : base(dbContext)
         {
@@ -48,6 +48,19 @@ namespace HW21.Repository.MainRepositories.Repos
                 .Where(t => t.CenterId == centerId)
                 .Where(t => t.CreatedAt == date)
                 .ToListAsync();
+        }
+
+        public async Task<TurnByNameDto?> GetTurnsByCenterName(string centerName)
+        {
+            return await _dbContext.TakingTurns
+                .AsNoTracking()
+                .Where(t => t.Center.Name == centerName)
+                .Select(x => new TurnByNameDto
+                {
+                    provinceName = x.ProvinceName,
+                    cityName = x.CityName,
+                    centerName = x.Center.Name
+                }).FirstAsync();
         }
 
         public async Task<bool> IsReserveAsync(int timeManagingId)

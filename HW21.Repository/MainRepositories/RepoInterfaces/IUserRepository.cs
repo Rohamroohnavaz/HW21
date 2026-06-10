@@ -1,5 +1,6 @@
 ﻿using HW21.DomainLayer.Models;
 using HW21.Repository.GenericRepositories;
+using HW21.Repository.RepoDto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,5 +18,7 @@ namespace HW21.Repository.MainRepositories.RepoInterfaces
         Task<Car?> AddCarWithChassisNumber(string chassisNumber);
 
         Task<List<TakingTurn>> GetAcitveTurns();
+
+        //Task<TakingTurnDto> TakeTurnFromCenterForCar(string provinceName ,string cityName ,string centerName);
     }
 }

@@ -18,5 +18,11 @@ namespace HW21.Repository.MainRepositories.RepoInterfaces
         Task<bool> IsReserveAsync(int timeManagingId);
 
         Task<TakingTurnDto?> GetByIdTurnDto(int id);
+
+        //Task<bool> CheckAvailableTurns(int timeId, string provinceName);
+
+        //Task<List<TakingTurn>> GetTurnsByName(string provinceName, string cityName, string centerName);
+
+        Task<TakingTurn?> GetTurnByCenterName(string centerName);
     }
 }
