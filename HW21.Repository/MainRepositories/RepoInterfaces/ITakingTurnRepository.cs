@@ -23,6 +23,6 @@ namespace HW21.Repository.MainRepositories.RepoInterfaces
 
         //Task<List<TakingTurn>> GetTurnsByName(string provinceName, string cityName, string centerName);
 
-        Task<TakingTurn?> GetTurnByCenterName(string centerName);
+        Task<TurnByNameDto?> GetTurnByCenterName(string centerName);
     }
 }

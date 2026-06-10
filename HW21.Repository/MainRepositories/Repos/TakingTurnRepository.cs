@@ -50,7 +50,7 @@ namespace HW21.Repository.MainRepositories.Repos
                 .ToListAsync();
         }
 
-        public async Task<TurnByNameDto?> GetTurnsByCenterName(string centerName)
+        public async Task<TurnByNameDto?> GetTurnByCenterName(string centerName)
         {
             return await _dbContext.TakingTurns
                 .AsNoTracking()
