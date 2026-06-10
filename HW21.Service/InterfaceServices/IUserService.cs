@@ -13,6 +13,6 @@ namespace HW21.Service.InterfaceServices
 
         Task AddCarsWithChassisNumberAsync(string chassisNumber);
 
-        Task<List<TakingTurn>> GetActiveTurns();
+        Task<List<TakingTurn>> GetActiveTurnsAsync();
     }
 }

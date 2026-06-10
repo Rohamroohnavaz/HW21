@@ -3,6 +3,7 @@ using HW21.DomainLayer.Models;
 using HW21.Infrastructure.Data;
 using HW21.Repository.GenericRepositories;
 using HW21.Repository.MainRepositories.RepoInterfaces;
+using HW21.Repository.RepoDto;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,20 @@ namespace HW21.Repository.MainRepositories.Repos
     {
         public TakingTurnRepository(AppDbContext dbContext) : base(dbContext)
         {
+        }
+
+        public async Task<TakingTurnDto?> GetByIdTurnDto(int id)
+        {
+            return await _dbContext.TakingTurns
+                .AsNoTracking()
+                .Where(t => t.Id == id)
+                .Select(x => new TakingTurnDto
+                {
+                    Id = x.Id,
+                    Capacity = x.Capacity,
+                    CenterId = x.CenterId,
+                    Status = Status.Active
+                }).FirstOrDefaultAsync();
         }
 
         public async Task<List<TakingTurn>> GetTurnsByCenterId(int centerId)

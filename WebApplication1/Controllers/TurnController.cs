@@ -15,12 +15,23 @@ namespace WebApplication1.Controllers
             _turnService = turnService;
         }
 
-        [HttpGet("GetAllTurns")]
+        [HttpGet]
         public async Task<IActionResult> GetAllTurns()
         {
             var turns = await _turnService.GetAllTurnsDto();
 
             return Ok(turns);
+        }
+
+        [HttpGet("{id:int}")]
+        public async Task<IActionResult> GetById(int id)
+        {
+            var turn = await _turnService.GetById(id);
+
+            if (turn is null)
+                return NotFound();
+
+            return Ok(turn);
         }
     }
 }

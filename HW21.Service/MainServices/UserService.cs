@@ -15,49 +15,30 @@ namespace HW21.Service.MainServices
 {
     public class UserService : IUserService
     {
-        private readonly AppDbContext _context;
         private readonly IUserRepository _userRepository;
 
-        public UserService(AppDbContext context ,IUserRepository userRepository)
+        public UserService(IUserRepository userRepository)
         {
-            _context = context;
             _userRepository = userRepository;
         }
 
         public async Task RegisterUserWithPhoneNumberAsync(long phoneNumber)
         {
-            await _context.Set<User>().FirstOrDefaultAsync(u => u.Role == Role.NormalUser);
-
-            var register = await _context.Users
-                .AsNoTracking()
-                .FirstOrDefaultAsync(u => u.PhoneNumber == phoneNumber);
-
-            if (register is null)
-                return;
-
-            Console.WriteLine("User Registered Successfully!!");
+            await _userRepository.RegistrUserWith(phoneNumber);
         }
 
         public async Task AddCarsWithChassisNumberAsync(string chassisNumber)
         {
-            Console.Write("Please Enter Your Chassis Number : ");
-            var input = Console.ReadLine();
+            //Console.Write("Please Enter Your Chassis Number : ");
+            //var input = Console.ReadLine();
 
-            var newCar = await _context.Cars
-                .Where(n => input == n.ChassisNumber)
-                .FirstAsync();
-
+            var newCar = _userRepository.AddCarWithChassisNumber(chassisNumber);
             await _userRepository.AddCarsAsync(newCar);
         }
 
-        public async Task<List<TakingTurn>> GetActiveTurns()
+        public async Task<List<TakingTurn>> GetActiveTurnsAsync()
         {
-            var turns = await _context.TakingTurns
-                .AsNoTracking()
-                .Where(t => t.Status == Status.Active)
-                .ToListAsync();
-
-            return turns;
+            return await _userRepository.GetAcitveTurns();
         }
     }
 }

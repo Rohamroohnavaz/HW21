@@ -1,5 +1,6 @@
 ﻿using HW21.DomainLayer.Models;
 using HW21.Repository.GenericRepositories;
+using HW21.Repository.RepoDto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,5 +16,7 @@ namespace HW21.Repository.MainRepositories.RepoInterfaces
         Task<List<TakingTurn>> GetTurnsByCenterIdAndDate(int centerId, DateTime date);
 
         Task<bool> IsReserveAsync(int timeManagingId);
+
+        Task<TakingTurnDto?> GetByIdTurnDto(int id);
     }
 }

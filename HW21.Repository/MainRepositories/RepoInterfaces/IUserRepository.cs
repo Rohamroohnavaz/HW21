@@ -10,6 +10,12 @@ namespace HW21.Repository.MainRepositories.RepoInterfaces
 {
     public interface IUserRepository : IGenericRepository<User>
     {
-        Task AddCarsAsync(Car entity);
+        Task AddCarsAsync(Task<Car?> entity);
+
+        Task RegistrUserWith(long phoneNumber);
+
+        Task<Car?> AddCarWithChassisNumber(string chassisNumber);
+
+        Task<List<TakingTurn>> GetAcitveTurns();
     }
 }

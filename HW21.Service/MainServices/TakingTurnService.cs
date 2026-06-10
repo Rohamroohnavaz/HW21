@@ -1,6 +1,7 @@
 ﻿using HW21.DomainLayer.Enums;
 using HW21.DomainLayer.Models;
 using HW21.Repository.MainRepositories.RepoInterfaces;
+using HW21.Repository.RepoDto;
 using HW21.Service.DtoServices;
 using HW21.Service.InterfaceServices;
 using System;
@@ -70,6 +71,13 @@ namespace HW21.Service.MainServices
                 CenterId = x.CenterId,
                 Status = Status.Active
             }).ToList();
+        }
+
+        public async Task<TakingTurnDto> GetById(int id)
+        {
+            var turn = await _turnRepository.GetByIdTurnDto(id);
+
+            return turn;
         }
     }
 }
