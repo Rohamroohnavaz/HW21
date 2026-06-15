@@ -20,17 +20,17 @@ namespace HW21.Presentation
             var centerRepo = new CenterRepository(dbContext);
             var takingTurnRepo = new TakingTurnRepository(dbContext);
 
-            var user = new User(1,"Rohi86", "123456", 9351305594);
-            await userRepo.AddAsync(user);
+            //var user = new User(1,"Rohi86", "123456", 9351305594);
+            //await userRepo.AddAsync(user);
 
-            var users = await dbContext.Users
-                .Where(u => u.CreatedAt > DateTime.UtcNow.AddDays(-30))
-                .ToListAsync();
+            //var users = await dbContext.Users
+            //    .Where(u => u.CreatedAt > DateTime.UtcNow.AddDays(-30))
+            //    .ToListAsync();
 
-            Console.WriteLine(JsonSerializer.Serialize(users, new JsonSerializerOptions
-            {
-                WriteIndented = true,
-            }));
+            //Console.WriteLine(JsonSerializer.Serialize(users, new JsonSerializerOptions
+            //{
+            //    WriteIndented = true,
+            //}));
         }
     }
 }

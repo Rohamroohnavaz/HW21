@@ -40,7 +40,7 @@ namespace HW21.DomainLayer.Models
         [Required]
         public int ProvinceId { get; set; }
         [Required]
-        public Status Status { get; set; } = Status.Active;
+        public Status Status { get; set; }
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
 

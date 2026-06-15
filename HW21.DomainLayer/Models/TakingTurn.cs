@@ -38,9 +38,9 @@ namespace HW21.DomainLayer.Models
         public TimeManaging Time { get; set; }
         public int TimeId { get; set; }
         [Required]
-        public Status Status { get; set; } = Status.Active;
+        public Status Status { get; set; }
         [Required]
-        public ReserveStatus ReserveStatus { get; set; } = ReserveStatus.None;
+        public ReserveStatus ReserveStatus { get; set; }
 
         public void UpdateTurnInfo(int capacity ,string resultText)
         {

@@ -15,7 +15,7 @@ namespace WebApplication1.Controllers
             _turnService = turnService;
         }
 
-        [HttpGet]
+        [HttpGet("GetAllTurns")]
         public async Task<IActionResult> GetAllTurns()
         {
             var turns = await _turnService.GetAllTurnsDto();

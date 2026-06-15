@@ -68,7 +68,6 @@ namespace HW21.Service.MainServices
                 Console.WriteLine("Invalid Names !!");
                 return;
             }
-
         }
 
         public async Task<List<TurnDto>> GetAllTurnsDto()
@@ -84,11 +83,9 @@ namespace HW21.Service.MainServices
             }).ToList();
         }
 
-        public async Task<TakingTurnDto> GetById(int id)
+        public async Task<TakingTurnDto?> GetById(int id)
         {
-            var turn = await _turnRepository.GetByIdTurnDto(id);
-
-            return turn;
+            return await _turnRepository.GetByIdTurnDto(id);
         }
     }
 }

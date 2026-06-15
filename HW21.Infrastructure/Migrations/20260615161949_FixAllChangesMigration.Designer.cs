@@ -4,6 +4,7 @@ using HW21.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HW21.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260615161949_FixAllChangesMigration")]
+    partial class FixAllChangesMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -324,7 +327,7 @@ namespace HW21.Infrastructure.Migrations
                             Capacity = 4,
                             CarId = 3,
                             CenterId = 3,
-                            CityName = "Shiraz",
+                            CityName = "Tehran",
                             CreatedAt = new DateTime(2026, 10, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
                             ProvinceName = "Tehran",
@@ -339,7 +342,7 @@ namespace HW21.Infrastructure.Migrations
                             Capacity = 2,
                             CarId = 4,
                             CenterId = 4,
-                            CityName = "Esfahan",
+                            CityName = "Karaj",
                             CreatedAt = new DateTime(2026, 9, 8, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
                             ProvinceName = "Alborz",

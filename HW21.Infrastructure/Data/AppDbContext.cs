@@ -1,4 +1,5 @@
 ﻿using HW21.DomainLayer.Models;
+using HW21.Infrastructure.ModelBuilders;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
@@ -43,7 +44,13 @@ namespace HW21.Infrastructure.Data
             //    relationship.DeleteBehavior = DeleteBehavior.Restrict;
             //}
 
-            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+            modelBuilder.ApplyConfiguration(new ProvinceModelBuilderConfiguration());
+            modelBuilder.ApplyConfiguration(new CityModelBuilderConfiguration());
+            modelBuilder.ApplyConfiguration(new TechnicalCenterModelBuilderConfiguration());
+            modelBuilder.ApplyConfiguration(new TimeManagingModelBuilderConfiguration());
+            modelBuilder.ApplyConfiguration(new UserModelBuilderConfiguration());
+            modelBuilder.ApplyConfiguration(new CarModelBuilderConfiguration());
+            modelBuilder.ApplyConfiguration(new TakingTurnModelBuilderConfiguration());
         }
     }
 }

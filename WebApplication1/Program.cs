@@ -22,6 +22,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<AppDbContext>(options =>
             options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+builder.Services.AddScoped<TakingTurnService>();
 builder.Services.AddScoped<ITakingTurnService, TakingTurnService>();
 builder.Services.AddScoped<ITakingTurnRepository ,TakingTurnRepository>();
 builder.Services.AddScoped<ICarRepository, CarRepository>();

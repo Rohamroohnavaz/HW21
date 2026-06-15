@@ -19,6 +19,7 @@ namespace HW21.Infrastructure.ModelBuilders
             builder.HasQueryFilter(e => e.IsDeleted);
 
             ApplyEntityConfiguration(builder);
+            
         }
 
         protected abstract void ApplyEntityConfiguration(EntityTypeBuilder<T> builder);
