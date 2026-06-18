@@ -20,11 +20,14 @@ namespace WebApplication1.Controllers
         {
             var turns = await _turnService.GetAllTurnsDto();
 
+            if (turns == null)
+                NotFound("Turns Not Found!");
+
             return Ok(turns);
         }
 
         [HttpGet("{id:int}")]
-        public async Task<IActionResult> GetById(int id)
+        public async Task<IActionResult> GetById([FromRoute]int id)
         {
             var turn = await _turnService.GetById(id);
 

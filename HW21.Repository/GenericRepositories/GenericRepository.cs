@@ -26,8 +26,21 @@ namespace HW21.Repository.GenericRepositories
 
         public async Task<List<T>> GetAllAsync()
         {
-            var query = _dbContext.Set<T>().AsNoTracking();
-            return await query.ToListAsync();
+            //var query = _dbContext.Set<T>().AsNoTracking();
+            //return await query.ToListAsync();
+            var databaseName = _dbContext.Database.GetDbConnection().Database;
+            var dataSource = _dbContext.Database.GetDbConnection().DataSource;
+
+            var entityType = _dbContext.Model.FindEntityType(typeof(T));
+            var tableName = entityType?.GetTableName();
+            var schema = entityType?.GetSchema();
+            var sql = _dbContext.Set<T>().AsNoTracking().ToQueryString();
+
+            var result = await _dbContext.Set<T>().AsNoTracking().ToListAsync();
+
+            var count = result.Count;
+
+            return result;
         }
 
         public async Task<T?> GetByIdAsync(int id)
