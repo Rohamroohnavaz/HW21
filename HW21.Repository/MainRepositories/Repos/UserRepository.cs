@@ -22,10 +22,12 @@ namespace HW21.Repository.MainRepositories.Repos
 
         public async Task<Car?> AddCarWithChassisNumber(string chassisNumber)
         {
-            return await _dbContext.Cars
+            var car = await _dbContext.Cars
                  .AsNoTracking()
                  .Where(c => c.ChassisNumber == chassisNumber)
                  .FirstAsync();
+
+            return car;
         }
 
         public async Task AddCarsAsync(Task<Car?> entity)

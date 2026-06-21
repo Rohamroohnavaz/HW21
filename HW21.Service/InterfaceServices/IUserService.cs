@@ -1,4 +1,5 @@
 ﻿using HW21.DomainLayer.Models;
+using HW21.Service.DtoServices;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,8 +12,10 @@ namespace HW21.Service.InterfaceServices
     {
         Task RegisterUserWithPhoneNumberAsync(long phoneNumber);
 
-        Task AddCarsWithChassisNumberAsync(string chassisNumber);
+        Task<Car?> AddCarsWithChassisNumberAsync(string chassisNumber);
 
         Task<List<TakingTurn>> GetActiveTurnsAsync();
+
+        Task UpdateUserInfo(UserDto dto ,int id);
     }
 }

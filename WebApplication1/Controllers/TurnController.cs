@@ -1,4 +1,8 @@
-﻿using HW21.Service.InterfaceServices;
+﻿using HW21.DomainLayer.Models;
+using HW21.Repository.MainRepositories.RepoInterfaces;
+using HW21.Repository.MainRepositories.Repos;
+using HW21.Service.DtoServices;
+using HW21.Service.InterfaceServices;
 using HW21.Service.MainServices;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,11 +12,13 @@ namespace WebApplication1.Controllers
     [Route("[controller]")]
     public class TurnController : Controller
     {
-        private readonly TakingTurnService _turnService;
+        private readonly ITakingTurnService _turnService;
+        private readonly ITakingTurnRepository _turnRepository;
 
-        public TurnController(TakingTurnService turnService)
+        public TurnController(TakingTurnService turnService ,ITakingTurnRepository turnRepository)
         {
             _turnService = turnService;
+            _turnRepository = turnRepository;
         }
 
         [HttpGet("GetAllTurns")]
@@ -35,6 +41,19 @@ namespace WebApplication1.Controllers
                 return NotFound();
 
             return Ok(turn);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateTurn([FromBody] CreateTurnDto dto, [FromRoute] int userId,[FromRoute] int timeManageId)
+        {
+            await _turnService.CreateTurnForUserById(dto, userId, timeManageId);
+            var turn = new TakingTurn(dto.Capacity, dto.ResultText, dto.ProvinceName, dto.CityName);
+
+            if (turn is null)
+                return NotFound("Turn Not Found !!");
+
+            await _turnRepository.AddAsync(turn);
+            return Created();
         }
     }
 }

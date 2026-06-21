@@ -4,6 +4,7 @@ using HW21.Repository.MainRepositories.Repos;
 using HW21.Service.InterfaceServices;
 using HW21.Service.MainServices;
 using Microsoft.EntityFrameworkCore;
+using WebApplication1.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddCors(options =>
@@ -11,7 +12,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowAll", policy =>
     {
         policy.AllowAnyOrigin()
-        .AllowAnyMethod() 
+        .AllowAnyMethod()
         .AllowAnyHeader();
     });
 });
@@ -24,9 +25,11 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 builder.Services.AddScoped<TakingTurnService>();
 builder.Services.AddScoped<ITakingTurnService, TakingTurnService>();
-builder.Services.AddScoped<ITakingTurnRepository ,TakingTurnRepository>();
+builder.Services.AddScoped<ITakingTurnRepository, TakingTurnRepository>();
 builder.Services.AddScoped<ICarRepository, CarRepository>();
 builder.Services.AddScoped<ICenterRepository, CenterRepository>();
+builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
 // Add services to the container.
 
 builder.Services.AddControllers();
@@ -43,6 +46,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseMiddleware<LoggingMiddleware>();
 
 app.UseHttpsRedirection();
 
