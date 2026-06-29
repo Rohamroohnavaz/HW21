@@ -14,11 +14,15 @@ namespace WebApplication1.Controllers
     {
         private readonly ITakingTurnService _turnService;
         private readonly ITakingTurnRepository _turnRepository;
+        private readonly IGetEmptyTimeSpacesService _getEmptyTimeSpacesService;
 
-        public TurnController(TakingTurnService turnService ,ITakingTurnRepository turnRepository)
+        public TurnController(TakingTurnService turnService
+            ,ITakingTurnRepository turnRepository 
+            ,IGetEmptyTimeSpacesService getEmptyTimeSpacesService)
         {
             _turnService = turnService;
             _turnRepository = turnRepository;
+            _getEmptyTimeSpacesService = getEmptyTimeSpacesService;
         }
 
         [HttpGet("GetAllTurns")]
@@ -54,6 +58,14 @@ namespace WebApplication1.Controllers
 
             await _turnRepository.AddAsync(turn);
             return Created();
+        }
+
+        [HttpGet("{centerId}/empty-spaces")]
+        public async Task<IActionResult> GetEmptySpaces([FromRoute] int centerId ,[FromQuery]DateTime date)
+        {
+            var time = await _getEmptyTimeSpacesService.GetEmptySpaceAsync(centerId, date);
+
+            return Ok(time);
         }
     }
 }

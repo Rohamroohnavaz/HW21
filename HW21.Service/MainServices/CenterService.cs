@@ -34,5 +34,20 @@ namespace HW21.Service.MainServices
                     Status = x.Status,
                 }).ToList();
         }
+
+        public async Task<GetCenterDto?> GetById(int id)
+        {
+            var center = await _centerRepository.GetByIdAsync(id);
+
+            return new GetCenterDto
+            {
+                Id = center.Id,
+                Name = center.Name,
+                CityId = center.CityId,
+                TurnCount = center.TurnCount,
+                Address = center.Address,
+                Status = center.Status
+            };
+        }
     }
 }

@@ -39,6 +39,18 @@ namespace HW21.Service.MainServices
             Console.WriteLine("Car Added Successfully:))");
         }
 
+        public async Task<CarDto?> GetById(int id)
+        {
+            var car = await _carRepository.GetByIdAsync(id);
+
+            return new CarDto
+            {
+                Id = car.Id,
+                ChassisNumber = car.ChassisNumber,
+                Status = Status.Active
+            };
+        }
+
         public async Task<List<CarDto>> GetCarsForUserAsync(int userId)
         {
             var cars = await _carRepository.GetCarByUserId(userId);

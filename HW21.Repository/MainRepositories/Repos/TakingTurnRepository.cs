@@ -46,7 +46,6 @@ namespace HW21.Repository.MainRepositories.Repos
             return await _dbContext.TakingTurns
                 .AsNoTracking()
                 .Where(t => t.CenterId == centerId)
-                .Where(t => t.CreatedAt == date)
                 .ToListAsync();
         }
 

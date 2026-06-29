@@ -22,7 +22,7 @@ namespace HW21.Service.MainServices
         }
         public async Task<List<TimeManagingDto>> GetEmptySpaceAsync(int centerId, DateTime date)
         {
-            var center = _centerRepository.GetByIdAsync(centerId);
+            var center = await _centerRepository.GetByIdAsync(centerId);
 
             if (center is null || (int)center.Status != (int)Status.Active)
                 return new List<TimeManagingDto>();
@@ -38,7 +38,6 @@ namespace HW21.Service.MainServices
                 EndTime = x.EndTime,
                 Status = Status.Active
             }).ToList();
-
         }
     }
 }

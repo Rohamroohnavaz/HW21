@@ -11,5 +11,7 @@ namespace HW21.Service.InterfaceServices
     public interface ICenterService
     {
         Task<List<CenterDto>> GetActiveCenterByCityIdAsync(int cityId);
+
+        Task<GetCenterDto?> GetById(int id);
     }
 }

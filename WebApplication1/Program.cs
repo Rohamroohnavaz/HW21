@@ -27,9 +27,12 @@ builder.Services.AddScoped<TakingTurnService>();
 builder.Services.AddScoped<ITakingTurnService, TakingTurnService>();
 builder.Services.AddScoped<ITakingTurnRepository, TakingTurnRepository>();
 builder.Services.AddScoped<ICarRepository, CarRepository>();
+builder.Services.AddScoped<ICarService, CarService>();
 builder.Services.AddScoped<ICenterRepository, CenterRepository>();
+builder.Services.AddScoped<ICenterService, CenterService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IGetEmptyTimeSpacesService, GetEmptyTimeSpacesService>();
 // Add services to the container.
 
 builder.Services.AddControllers();
@@ -47,7 +50,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseMiddleware<LoggingMiddleware>();
+//app.UseMiddleware<LoggingMiddleware>();
 
 app.UseHttpsRedirection();
 
