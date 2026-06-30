@@ -13,7 +13,7 @@ namespace HW21.Repository.MainRepositories.RepoInterfaces
     {
         Task AddCarsAsync(Task<Car?> entity);
 
-        Task RegistrUserWith(long phoneNumber);
+        Task<int> RegisterUser(string username ,string password ,long phoneNumber);
 
         Task<Car?> AddCarWithChassisNumber(string chassisNumber);
 

@@ -24,9 +24,10 @@ namespace HW21.Service.MainServices
             _userRepository = userRepository;
         }
 
-        public async Task RegisterUserWithPhoneNumberAsync(long phoneNumber)
+        public async Task<int> RegisterUserWithInformationAsync(string username, string password, long phoneNumber)
         {
-            await _userRepository.RegistrUserWith(phoneNumber);
+           var registeredUser = _userRepository.RegisterUser(username, password, phoneNumber);
+           return await registeredUser;
         }
 
         public async Task<Car?> AddCarsWithChassisNumberAsync(string chassisNumber)
@@ -42,7 +43,7 @@ namespace HW21.Service.MainServices
             return await _userRepository.GetAcitveTurns();
         }
 
-        public async Task UpdateUserInfo(UserDto dto ,int id)
+        public async Task UpdateUserInfo(UserDto dto, int id)
         {
             var user = await _userRepository.GetByIdAsync(id);
 

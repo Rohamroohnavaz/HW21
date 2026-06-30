@@ -1,6 +1,7 @@
 ﻿using HW21.DomainLayer.Models;
 using HW21.Repository.MainRepositories.RepoInterfaces;
 using HW21.Repository.MainRepositories.Repos;
+using HW21.Repository.RepoDto;
 using HW21.Service.DtoServices;
 using HW21.Service.Exceptions;
 using HW21.Service.InterfaceServices;
@@ -37,8 +38,8 @@ namespace WebApplication1.Controllers
             return Ok(user);
         }
 
-        [HttpPost]
-        public async Task<IActionResult> AddUser([FromBody] AddUserDto dto)
+        [HttpPost("/AddUser")]
+        public async Task<IActionResult> AddUser([FromBody]AddUserDto dto)
         {
             try
             {
@@ -72,6 +73,13 @@ namespace WebApplication1.Controllers
             return Ok(user);
         }
 
+        [HttpPost("/Register")]
+        public async Task<ActionResult<int>> RegisterUser([FromBody]RegisterUserDto dto)
+        {
+            var userId = await _userRepository.RegisterUser(dto.UserName, dto.Password, dto.PhoneNumber);
+            return Ok(userId);
+        }
+
         //[HttpPost]
         //public async Task<IActionResult> AddCar([FromQuery]string chassisNumber)
         //{
@@ -83,7 +91,5 @@ namespace WebApplication1.Controllers
         //    await _carRepository.AddAsync(car);
         //    return Created();
         //}
-
-
     }
 }

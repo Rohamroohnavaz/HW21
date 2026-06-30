@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Caching.Distributed;
+﻿using HW21.Service.MainServices.Redis;
+using Microsoft.Extensions.Caching.Distributed;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,7 @@ namespace HW21.Service.MainServices.Caching
     public class CacheService : ICacheService
     {
         private readonly IDistributedCache _cache;
+        //private readonly IRedisService _redisService;
 
         public CacheService(IDistributedCache cache)
         {

@@ -10,7 +10,7 @@ namespace HW21.Service.InterfaceServices
 {
     public interface IUserService
     {
-        Task RegisterUserWithPhoneNumberAsync(long phoneNumber);
+        Task<int> RegisterUserWithInformationAsync(string username ,string password ,long phoneNumber);
 
         Task<Car?> AddCarsWithChassisNumberAsync(string chassisNumber);
 

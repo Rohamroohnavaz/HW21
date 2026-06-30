@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -36,19 +37,42 @@ namespace HW21.Repository.MainRepositories.Repos
             await _dbContext.SaveChangesAsync();
         }
 
-        public async Task RegistrUserWith(long phoneNumber)
+        public async Task<int> RegisterUser(string username, string password, long phoneNumber)
         {
-            await _dbContext.Users
-               .FirstOrDefaultAsync(u => u.Role == Role.NormalUser);
+            //Login View
 
-            var user = await _dbContext.Users
-                .AsNoTracking()
-                .FirstOrDefaultAsync(u => u.PhoneNumber == phoneNumber);
+            //var checkUser = await _dbContext.Users
+            //    .FirstOrDefaultAsync(u => u.Role == Role.NormalUser); 
 
-            if (user == null)
-                return;
+            //if (checkUser is null) return; 
+            //var user = await _dbContext.Users
+            //    .AsNoTracking()
+            //    .FirstOrDefaultAsync(u => u.PhoneNumber == phoneNumber 
+            //    && u.Username == username 
+            //    && u.Password == password);
 
-            Console.WriteLine("User Successfully Registered!");
+            /////////////////////////
+            
+            var User = await _dbContext.Users
+                .AnyAsync(u => u.PhoneNumber == phoneNumber 
+                && u.Username == username 
+                && u.Password == password);
+
+            if (User)
+                return 0;
+
+            var newUser = new User()
+            {
+                Username = username,
+                Password = password,
+                PhoneNumber = phoneNumber,
+                Role = Role.NormalUser
+            };
+
+            await _dbContext.Users.AddAsync(newUser);
+            await _dbContext.SaveChangesAsync();
+
+            return newUser.Id;
         }
 
         public async Task<List<TakingTurn>> GetAcitveTurns()
@@ -71,7 +95,7 @@ namespace HW21.Repository.MainRepositories.Repos
         //    if (!centers.Any())
         //        return null;
 
-            
+
         //}
     }
 }
