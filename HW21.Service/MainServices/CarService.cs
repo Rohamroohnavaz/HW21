@@ -20,7 +20,7 @@ namespace HW21.Service.MainServices
             _carRepository = carRepository;
         }
 
-        public async Task AddCarAsync(CarDto dto, string userId)
+        public async Task AddCarAsync(CarDto dto, int userId)
         {
             var existCar = await _carRepository.ExistByChassissNumber(dto.ChassisNumber);
 

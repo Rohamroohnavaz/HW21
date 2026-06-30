@@ -1,8 +1,10 @@
 ﻿using Microsoft.Extensions.Caching.Distributed;
+using StackExchange.Redis;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace HW21.Service.MainServices.Redis
@@ -23,6 +25,31 @@ namespace HW21.Service.MainServices.Redis
                 return false;
 
             return true;
+        }
+
+        public async Task<T?> GetAsync<T>(string key)
+        {
+            var data = await _cache.GetStringAsync(key);
+            if (data is null)
+                return default(T?);
+
+            return JsonSerializer.Deserialize<T>(data);
+        }
+
+        public async Task RemoveAsync(string key)
+        {
+            await _cache.RemoveAsync(key);
+        }
+
+        public async Task SetAsync<T>(string key, T value, TimeSpan? expiry = null)
+        {
+            var options = new DistributedCacheEntryOptions();
+
+            if (expiry.HasValue)
+                options.AbsoluteExpirationRelativeToNow = expiry;
+
+            var json = JsonSerializer.Serialize(value);
+            await _cache.SetStringAsync(key, json, options);
         }
     }
 }

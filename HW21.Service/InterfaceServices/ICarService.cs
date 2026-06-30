@@ -12,7 +12,7 @@ namespace HW21.Service.InterfaceServices
     {
         Task<List<CarDto>> GetCarsForUserAsync(int userId);
 
-        Task AddCarAsync(CarDto dto, string userId);
+        Task AddCarAsync(CarDto dto, int userId);
 
         Task<CarDto?> GetById(int id);
     }

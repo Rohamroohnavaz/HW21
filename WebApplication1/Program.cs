@@ -3,6 +3,7 @@ using HW21.Repository.MainRepositories.RepoInterfaces;
 using HW21.Repository.MainRepositories.Repos;
 using HW21.Service.InterfaceServices;
 using HW21.Service.MainServices;
+using HW21.Service.MainServices.Caching;
 using Microsoft.EntityFrameworkCore;
 using WebApplication1.Middlewares;
 
@@ -40,6 +41,7 @@ builder.Services.AddScoped<ICenterService, CenterService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IGetEmptyTimeSpacesService, GetEmptyTimeSpacesService>();
+builder.Services.AddScoped<ICacheService, CacheService>();
 // Add services to the container.
 
 builder.Services.AddControllers();
