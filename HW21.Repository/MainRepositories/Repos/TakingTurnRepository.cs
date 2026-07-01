@@ -69,5 +69,15 @@ namespace HW21.Repository.MainRepositories.Repos
                 .AnyAsync(t => t.TimeId == timeManagingId
                 && t.ReserveStatus == ReserveStatus.IsReserve);
         }
+
+        public async Task<List<TakingTurn>> GetAvailableTurns(int centerId)
+        {
+            var turns = _dbContext.TakingTurns
+                .AsNoTracking()
+                .Where(t => t.CenterId == centerId && t.ReserveStatus != ReserveStatus.IsReserve)
+                .ToListAsync();
+
+            return await turns;
+        }
     }
 }

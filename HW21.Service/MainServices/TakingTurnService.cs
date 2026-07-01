@@ -4,10 +4,13 @@ using HW21.Repository.MainRepositories.RepoInterfaces;
 using HW21.Repository.RepoDto;
 using HW21.Service.DtoServices;
 using HW21.Service.InterfaceServices;
+using HW21.Service.MainServices.Redis;
+using Microsoft.Extensions.Caching.Distributed;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace HW21.Service.MainServices
@@ -17,13 +20,21 @@ namespace HW21.Service.MainServices
         private readonly ITakingTurnRepository _turnRepository;
         private readonly ICarRepository _carRepository;
         private readonly ICenterRepository _centerRepository;
+        private readonly IDistributedCache _cache;
+        private readonly IRedisService _redisService;
 
-        public TakingTurnService(ITakingTurnRepository turnRepository
-            , ICarRepository carRepository, ICenterRepository centerRepository)
+        public TakingTurnService(
+              ITakingTurnRepository turnRepository
+            , ICarRepository carRepository
+            , ICenterRepository centerRepository
+            , IDistributedCache cache
+            , IRedisService redisService)
         {
             _turnRepository = turnRepository;
             _carRepository = carRepository;
             _centerRepository = centerRepository;
+            _cache = cache;
+            _redisService = redisService;
         }
 
         public async Task CreateTurnForUserById(CreateTurnDto dto, int userId, int timeManagingId)
@@ -81,6 +92,31 @@ namespace HW21.Service.MainServices
                 CenterId = x.CenterId,
                 Status = Status.Active
             }).ToList();
+        }
+
+        public async Task<List<AvailableTurnDto>> GetAvailableTurns(int centerId)
+        {
+            var cacheKey = $"TakingTurn:{centerId}";
+
+            var cachedTakingTurns = await _redisService.GetAsync<List<AvailableTurnDto>>(cacheKey);
+
+            if (cachedTakingTurns is not null)
+                return cachedTakingTurns;
+
+            var takingTurns = await _turnRepository.GetAvailableTurns(centerId);
+
+            var result = takingTurns.Select(x => new AvailableTurnDto
+            {
+                Id = x.Id,
+                Capacity = x.Capacity,
+                CenterId = x.CenterId,
+                CityName = x.CityName,
+                Status = Status.Active
+            }).ToList();
+
+            await _redisService.SetAsync(cacheKey, result ,TimeSpan.FromMinutes(5));
+
+            return result;
         }
 
         public async Task<TakingTurnDto?> GetById(int id)

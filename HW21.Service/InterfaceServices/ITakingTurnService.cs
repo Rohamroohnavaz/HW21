@@ -17,5 +17,7 @@ namespace HW21.Service.InterfaceServices
         Task<List<TurnDto>> GetAllTurnsDto();
 
         Task<TakingTurnDto?> GetById(int id);
+
+        Task<List<AvailableTurnDto>> GetAvailableTurns(int centerId);
     }
 }

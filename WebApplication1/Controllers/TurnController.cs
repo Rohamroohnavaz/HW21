@@ -60,12 +60,20 @@ namespace WebApplication1.Controllers
             return Created();
         }
 
-        [HttpGet("{centerId}/empty-spaces")]
-        public async Task<IActionResult> GetEmptySpaces([FromRoute] int centerId ,[FromQuery]DateTime date)
-        {
-            var time = await _getEmptyTimeSpacesService.GetEmptySpaceAsync(centerId, date);
+        //[HttpGet("{centerId}/empty-spaces")]
+        //public async Task<IActionResult> GetEmptySpaces([FromRoute] int centerId ,[FromQuery]DateTime date)
+        //{
+        //    var time = await _getEmptyTimeSpacesService.GetEmptySpaceAsync(centerId, date);
 
-            return Ok(time);
+        //    return Ok(time);
+        //}
+
+        [HttpGet("{centerId}/Empty")]
+        public async Task<IActionResult> GetAvailableTurns([FromRoute]int centerId)
+        {
+            var turns = await _turnService.GetAvailableTurns(centerId);
+
+            return Ok(turns);
         }
     }
 }

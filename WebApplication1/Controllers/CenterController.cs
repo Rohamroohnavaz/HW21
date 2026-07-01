@@ -1,6 +1,7 @@
 ﻿using HW21.DomainLayer.Models;
 using HW21.Repository.MainRepositories.RepoInterfaces;
 using HW21.Service.InterfaceServices;
+using HW21.Service.MainServices;
 using HW21.Service.MainServices.Redis;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,7 +13,6 @@ namespace WebApplication1.Controllers
     {
         private readonly ICenterRepository _centerRepository;
         private readonly ICenterService _centerService;
-        //private readonly IRedisService _redisService;
         private readonly IGetEmptyTimeSpacesService _getEmptyTimeSpacesService;
 
         public CenterController(ICenterRepository centerRepository
@@ -33,14 +33,6 @@ namespace WebApplication1.Controllers
                 return NotFound();
 
             return Ok(center);
-        }
-
-        [HttpGet]
-        public async Task<IActionResult> GetEmptyTimes([FromRoute] int centerId, [FromQuery] DateTime date)
-        {
-            var times = await _getEmptyTimeSpacesService.GetEmptySpaceAsync(centerId, date);
-
-            return Ok(times);
         }
     }
 }
