@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace HW21.Service.MainServices
-{
+{ 
     public class CityService : ICityService
     {
         private readonly ICityRepository _cityRepository;
@@ -18,7 +18,7 @@ namespace HW21.Service.MainServices
         {
             _cityRepository = cityRepository;
         }
-        //7
+        
         public async Task<List<CityDto>> GetAllCitiesOfProvinceService(int provinceId)
         {
             var cities = await _cityRepository.GetCityByProvinceId(provinceId);
